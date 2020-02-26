@@ -1,0 +1,32 @@
+cat star_trek.json| jq '.'
+
+cat star_trek.json| jq '.[] | select(.show.name == "Star Trek: Picard")'
+cat star_trek.json| jq '.[] | select(.show.name == "Star Trek: Picard").show.premiered' -r
+cat star_trek.json| jq '.[] | select(.show.name =~ "Star Trek").show.premiered' -r
+
+cat star_trek.json| jq '.[] | select(.show.name | contains("Star Trek") | not).show | {name, type, rating, summary, genres}'
+cat star_trek.json| jq '.[] | select(.show.name | contains("Star Trek") | not).show'
+cat star_trek.json| jq '.[] | select(.show.name | contains("Star Trek") | not).show.name' -r
+cat star_trek.json| jq '.[] | select(.show.name | contains("Star Trek")).show.name' -r
+
+cat star_trek.json| jq '.[] | select(.show.status != "Ended")'
+cat star_trek.json| jq '[.[] | select(.show.status != "Ended")] | length'
+
+cat star_trek.json| jq '.[] | select(.show.status != "Ended") | .show' -r
+cat star_trek.json| jq '.[] | select(.show.status != "Ended") | .show.name' -r
+cat star_trek.json| jq '.[] | select(.show.status != "Ended") | .show | {name, rating}' -r
+cat star_trek.json| jq '.[] | select(.show.status != "Ended") | .show.name'
+cat star_trek.json| jq '.[] | select(.show.status != "Ended") | .show | [.name, .network]'
+cat star_trek.json| jq '.[] | select(.show.status != "Ended") | .show | [.name, .webChannel]'
+cat star_trek.json| jq '.[] | select(.show.status != "Ended") | .show | [.name, .rating]'
+
+cat star_trek.json| jq '[.[] | select(.show.status != "Ended") | .show] | sort_by(.rating.average)'
+cat star_trek.json| jq '[.[] | select(.show.status != "Ended") | .show] | sort_by(.rating.average) | .[].name'
+cat star_trek.json| jq '[.[] | select(.show.status != "Ended") | .show | select(.rating.average != null)] | sort_by(.rating.average) | .[].name'
+
+cat star_trek.json| jq '.[] | .show | [.genres, .name]\n'
+cat star_trek.json| jq '.[] | .show | select(.genres | contains(["Drama"])) | .name'
+
+curl http://api.tvmaze.com/search/shows\?q\=star | jq '.[] | .show | select(.name | contains("Star Trek")).name'
+curl http://api.tvmaze.com/search/shows\?q\=star | jq '.[] | .show | keys'
+curl http://api.tvmaze.com/search/shows\?q\=star | jq '.[] | .show | values'
