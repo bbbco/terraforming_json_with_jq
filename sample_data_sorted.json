@@ -1,0 +1,28 @@
+{
+    "favorites": {
+        "captain": "Picard",
+        "first officer": "Spock",
+        "movies": [
+            "Star Trek II: The Wrath of Khan",
+            "Star Trek IV: The Voyage Home",
+            "Star Trek VI: The Undiscovered Country"
+        ]
+    },
+    "duds": {
+        "captain": "Archer",
+        "first officer": "Chakotay",
+        "movies": [
+            "Star Trek Into Darkness",
+            "Star Trek Nemesis",
+            "Star Trek: The Final Frontier"
+        ]
+    },
+    "so-sos": {
+        "captain": "Janeway",
+        "first officer": "Trip",
+        "movies": [
+            "Star Trek First Contact",
+            "Star Trek III: The Search for Spock"
+        ]
+    }
+}
