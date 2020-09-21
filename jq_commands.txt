@@ -51,6 +51,3 @@ cat star_trek.json| jq '.[] | .show | select(.genres | contains(["Drama"])) | .n
 curl http://api.tvmaze.com/search/shows\?q\=star | jq '.[] | .show | select(.name | contains("Star Trek")).name'
 curl http://api.tvmaze.com/search/shows\?q\=star | jq '.[] | .show | keys'
 curl http://api.tvmaze.com/search/shows\?q\=star | jq '.[] | .show | values'
-
-cat /tmp/tivostream.json | jq .
-cat /tmp/tivostream.json | jq '.[]'
